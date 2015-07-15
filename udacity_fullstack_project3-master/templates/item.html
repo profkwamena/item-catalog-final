@@ -1,0 +1,31 @@
+{% include 'header.html' %}
+	<div class="item">
+		{% if item.image %}
+		<p><img class="itemimage" src="{{item.image}}" width="256" height="256" alt="Image">
+		</p>
+		{% endif %}
+		<h2>{{item.name}}</h2>
+		<p>{{item.description}}</p>
+		<p>Created: {{item.created.strftime('%H:%M:%S %d.%m.%Y')}}</p>
+		<p>Owner: {{item.owner.name}}</p>
+		<p>Category: {{item.category.name}}</p>
+		{% if user == item.owner%}
+		<p>
+			<a href="{{url_for('editItem',item_id=item.id)}}">
+				<button>Edit</button>
+			</a>
+		</p>
+		<p>
+			<a href="{{url_for('deleteItem',item_id=item.id)}}">
+				<button>Delete</button>
+			</a>
+		</p>
+		{% endif %}
+		<p>
+			<a href="{{url_for('showCategory',category_id=item.category.id)}}">
+				<button class:"jsonbutton">Back</button>
+			</a>
+		</p>
+	</div>
+{% include 'footer.html' %}
+</html>
