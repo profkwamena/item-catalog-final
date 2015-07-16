@@ -1,0 +1,40 @@
+{% include 'header.html' %}
+	<div class="main">
+		<div class="categories">
+			<h2>Categories</h2>
+			<ul>
+				<li><a href="{{url_for('showCatalog')}}">All</a>
+				</li>
+				{% for category in categories %}
+				            <li>
+				            	<a href=""></a>
+				            </li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% if category %}
+		<div class="items">
+			<h2>{{category.name}}</h2>
+			<ul>
+				{% if user %}
+				<li><a href<a href="">Add Item</a>
+				</li>
+				{% endif %} {% for item in items %}
+				<li><a href="{{url_for('showItem', item_id = item.id)}}">{{item.name}}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% else %}
+		<div class="items">
+			<h2>Latest Items</h2>
+			<ul>
+				{% for item in items %}
+				<li><a href="{{url_for('showItem', item_id = item.id)}}">{{item.name}} ({{item.category.name}})</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+	</div>
+{% include 'footer.html' %}
